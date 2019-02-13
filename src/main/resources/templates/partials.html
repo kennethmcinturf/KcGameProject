@@ -1,0 +1,82 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+
+
+<!--<div th:fragment="head (title)" >-->
+<!--<title><span th:text="${title}"></span></title>-->
+<!--</div>-->
+<head th:fragment="head(title)">
+    <meta charset="UTF-8"/>
+    <title th:text="${title}"></title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.2/css/uikit.min.css" />
+    <link rel="stylesheet" href="../static/css/style.css" th:href="@{/css/style.css}"/>
+    <link rel="icon" href="../static/img/paw_2.png" th:href="@{/img/paw_2.png}"/>
+</head>
+
+<body>
+<div uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky; bottom: #transparent-sticky-navbar uk-margin-bottom">
+    <nav th:fragment="navbar"  style="background-color: #CCCCFF" class="uk-navbar-container uk-margin" uk-navbar="mode: click">
+
+        <div class="uk-navbar-center">
+
+
+            <div class="uk-navbar-center-left"><div>
+                <ul class="uk-navbar-nav">
+                    <li class="uk-hidden@s">
+                        <a href="#">Menu</a>
+                        <div class="uk-navbar-dropdown">
+                            <ul class="uk-nav uk-navbar-dropdown-nav">
+                                <li sec:authorize="!isAuthenticated()"><a class="uk-link" href="/sign-up">Register</a></li>
+                                <li><a href="/home">Home</a></li>
+                                <li><a href="/adopter/pets">View all pets</a></li>
+                                <li><a href="/aboutme">View all developers</a></li>
+                                <li sec:authorize="!isAuthenticated()"><a href="/login">Login</a></li>
+                                <li sec:authorize="isAuthenticated()"><a href="/logout">Logout</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li sec:authorize="!isAuthenticated()" class="uk-visible@s">
+                        <a class="nav-link" href="/sign-up" style="color: black"><img class="uk-margin-small-right" src="https://img.icons8.com/material/24/000000/add-user-male.png" />Register</a>
+                    </li>
+                    <li class="uk-visible@s"><a class="nav-link" style="color: black" href="/home"><img src="https://img.icons8.com/material/24/000000/home-page.png" />Home</a></li>
+                    <li class="uk-visible@s"><a href="/adopter/pets" style="color: black"><img src="https://img.icons8.com/material/24/000000/search.png" />View all pets</a></li>
+                </ul>
+            </div></div>
+            <img th:src="@{/img/cat_corner.png}" class="nav_img"/>
+            <a class="uk-navbar-item uk-logo" style="color: black" href="/">Pet-tential</a>
+            <img th:src="@{/img/dog_corner.png}" class="nav_img"/>
+            <div class="uk-navbar-center-right"><div>
+                <ul class="uk-navbar-nav">
+                    <!--Logged in users see....-->
+                    <li class="uk-visible@s">
+                        <a class="nav-link" href="/aboutme" style="color: black"><img class="uk-margin-small-right" src="https://img.icons8.com/material/24/000000/user-group-man-man.png" />View all Developers</a>
+                    </li>
+                    <!--Logged out users see....-->
+                    <li sec:authorize="!isAuthenticated()" class="uk-visible@s">
+                        <a class="nav-link" href="/login" style="color: black"><img class="uk-margin-small-right" src="https://img.icons8.com/material/24/000000/import.png" />Login</a>
+                    </li>
+                    <li sec:authorize="isAuthenticated()" class="uk-visible@s">
+                        <a class="nav-link" href="/logout" style="color: black"><img class="uk-margin-small-right" src="https://img.icons8.com/material/24/000000/export.png" />Logout</a>
+                    </li>
+                </ul>
+            </div></div>
+
+        </div>
+    </nav>
+</div>
+
+
+<div th:fragment="footer">
+    <footer class="footer uk-flex">
+        <span class="uk-margin-auto">2019 Codeup. For Educational Purposes Only.</span>
+    </footer>
+</div>
+
+<div th:fragment="scripts">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.2/js/uikit.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.2/js/uikit-icons.min.js"></script>
+
+</div>
+
+</body>
+</html>

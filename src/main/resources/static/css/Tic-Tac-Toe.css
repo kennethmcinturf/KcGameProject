@@ -1,0 +1,87 @@
+button{
+    height: 40px;
+}
+.box {
+    background-color: white;
+    border: 1px solid black;
+    padding: 1em;
+    height:12em;
+    text-align: center;
+}
+.Xs{
+    display: none;
+    font-size: 7em;
+    vertical-align: top;
+}
+
+.Ys{
+    display: none;
+    font-size: 7em;
+}
+
+#top-left{
+    background-color: red;
+}
+
+#top-center{
+    background-color: orange;
+}
+
+#top-right{
+    background-color: yellow;
+}
+
+#center-left{
+    background-color: green;
+}
+
+#center-center{
+    background-color: blue;
+}
+
+#center-right{
+    background-color: indigo;
+}
+
+#bottom-left{
+    background-color: violet;
+}
+
+#bottom-center{
+    background-color: red;
+}
+
+#bottom-right{
+    background-color: blue;
+}
+
+#playerX{
+    font-family: "Courier New";
+    background-color: white;
+    color: blue;
+    font-size: 20px;
+}
+
+#playerO{
+    display: none;
+    font-family: "Courier New";
+    background-color: white;
+    color: red;
+    font-size: 20px;
+}
+
+#playerOWinner{
+    display: none;
+    font-size: 20px;
+    color: blue;
+    font-weight: bold;
+    background-color: white;
+}
+
+#playerXWinner{
+    display: none;
+    font-size: 20px;
+    color: red;
+    font-weight: bold;
+    background-color: white;
+}
