@@ -1,0 +1,33 @@
+body{
+    background-color: pink;
+}
+
+img {
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+
+p{
+    margin-top: -.75em;
+}
+
+.box {
+    background-color: white;
+    border: 1px solid black;
+    padding: 1em;
+    height:12em;
+    text-align: center;
+}
+
+.box2 {
+    background-color: white;
+    border: 1px solid black;
+    padding: 1em;
+    height: 1em;
+    text-align: center;
+}
+
+.highlight{
+    background-color: red;
+}

@@ -1,0 +1,60 @@
+img{
+    visibility: hidden;
+}
+
+h1{
+    font-family: 'Ubuntu', sans-serif;
+}
+
+div{
+    font-family: 'Roboto Mono', monospace;
+}
+
+body{
+    background-color: purple;
+}
+
+.hide-background-img{
+    background-position: -9999px -9999px;
+    background: none !important;
+}
+
+.img-one{
+    background: red;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.img-two{
+    background: blue;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.img-three{
+    background: yellow;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.img-four{
+    background: green;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.img-five{
+    background: pink;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.img-six{
+    background: black;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.hide{
+    visibility: hidden;
+}

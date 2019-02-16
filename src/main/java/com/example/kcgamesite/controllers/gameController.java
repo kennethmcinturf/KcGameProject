@@ -23,8 +23,18 @@ public class gameController {
         this.userDao = userDao;
     }
 
-    @GetMapping("Tic-Tac-Toe")
+    @GetMapping("/Tic-Tac-Toe")
     public String ticTacToe() {
         return "Game/Tic-Tac-Toe";
+    }
+
+    @GetMapping("/MemoryCard")
+    public String memoryCard() {
+        return "Game/Memory_Card";
+    }
+
+    @GetMapping("/SimpleSimon")
+    public String simpleSimon() {
+        return "Game/Simple_Simon";
     }
 }

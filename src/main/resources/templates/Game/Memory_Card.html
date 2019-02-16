@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Memory Cards</title>
+    <meta charset="UTF-8"/>
+    <title>Memory Card Game</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous"/>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono|Ubuntu" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/Memory_Card.css}"/>
+</head>
+<body>
+<div class="container uk-margin-bottom">
+    <nav th:replace="partials :: navbar"/>
+</div>
+<div class="container" id="container">
+    <div class="row justify-content-center">
+        <div class="col-7 text-center mb-4">
+            <h1 class="text-success">Memory Game</h1>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-3 border border-dark text-center">
+            <p class="text-center text-success">Score</p>
+            <input type="text" class="text-center border border-dark " disabled="disabled" id="round-counter"/>
+            <button id="resetGame" class="mt-3 mb-3 btn btn-outline-success">Reset Game</button>
+        </div>
+        <div class="col-6 text-center">
+            <label for="highScore" class="text-success">How many cards Would you like to use?</label>
+            <select name="amountOfCards" id="amountOfCards" class="custom-select my-1 mr-sm-2 text-center">
+                <option value="12" selected="selected">12</option>
+                <option value="10">10</option>
+                <option value="8">8</option>
+                <option value="6">6</option>
+                <option value="4">4</option>
+            </select>
+            <button id="resetCards" class="btn btn-outline-success mt-2">Reset Cards</button>
+        </div>
+        <div class="col-3 border border-dark text-center">
+            <p id="highScoreName" class="text-success">Current High Score is: None</p>
+            <input type="text" class="text-center border border-dark" disabled="disabled" id="highScore"/>
+            <button id="resetHighScore" class="text-center mt-3 mb-3 btn btn-outline-success">Reset High Score</button>
+        </div>
+        <div class="row">
+            <button id="enterMovie" class="btn btn-outline-success mb-4">Would you like to add some pictures</button>
+        </div>
+        <div class="row text-center">
+            <div class="col-12">
+                <p class="hide addMovie text-center" id="movieText">Please enter 6 movies to serve as new cards for the game</p>
+            </div>
+            <div class="col-4">
+                <input type="text" placeholder="Enter Movie" class="hide addMovie text-center" id="-1"/>
+            </div>
+            <div class="col-4">
+                <input type="text" placeholder="Enter Movie" class="hide addMovie text-center" id="-2"/>
+            </div>
+            <div class="col-4">
+                <input type="text" placeholder="Enter Movie" class="hide addMovie text-center" id="-3"/>
+            </div>
+            <div class="col-4">
+                <input type="text" placeholder="Enter Movie" class="hide addMovie text-center" id="-4"/>
+            </div>
+            <div class="col-4">
+                <input type="text" placeholder="Enter Movie" class="hide addMovie text-center" id="-5"/>
+            </div>
+            <div class="col-4">
+                <input type="text" placeholder="Enter Movie" class="hide addMovie text-center" id="-6"/>
+            </div>
+        </div>
+        <div class="row">
+            <button class="hide addMovie mt-3 mb-3 btn btn-outline-success" id="addMovie">Submit Pictures</button>
+        </div>
+    </div>
+    <div class="row mt-5 justify-content-center">
+        <div class="col-4">
+            <div class="card" id="card-one">
+                <section class="card-body hide-background-img border border-success click-event" id="0">
+                    <img class="card-img" src="img/camnewton.jpeg" alt="Card image cap"/>
+                </section>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="card" id="card-two">
+                <section class="card-body hide-background-img border border-success click-event" id="1">
+                    <img class="card-img" src="img/camnewton.jpeg" alt="Card image cap"/>
+                </section>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="card" id="card-five">
+                <section class="card-body hide-background-img border border-success click-event" id="4">
+                    <img class="card-img" src="img/camnewton.jpeg" alt="Card image cap"/>
+                </section>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-5">
+        <div class="col-4">
+            <div class="card" id="card-four">
+                <section class="card-body hide-background-img border border-success click-event" id="2">
+                    <img class="card-img" src="img/camnewton.jpeg" alt="Card image cap"/>
+                </section>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="card" id="card-three">
+                <section class="card-body hide-background-img border border-success click-event" id="3">
+                    <img class="card-img" src="img/camnewton.jpeg" alt="Card image cap"/>
+                </section>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="card" id="card-six">
+                <section class="card-body hide-background-img border border-success click-event" id="5">
+                    <img class="card-img" src="img/camnewton.jpeg" alt="Card image cap"/>
+                </section>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-5">
+        <div class="col-4">
+            <div class="card" id="card-seven">
+                <section class="card-body hide-background-img border border-success click-event" id="6">
+                    <img class="card-img" src="img/camnewton.jpeg" alt="Card image cap"/>
+                </section>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="card" id="card-eight">
+                <section class="card-body hide-background-img border border-success click-event" id="7">
+                    <img class="card-img" src="img/camnewton.jpeg" alt="Card image cap"/>
+                </section>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="card" id="card-nine">
+                <section class="card-body hide-background-img border border-success click-event" id="8">
+                    <img class="card-img" src="img/camnewton.jpeg" alt="Card image cap"/>
+                </section>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-5 text-center">
+        <div class="col-4">
+            <div class="card" id="card-ten">
+                <section class="card-body hide-background-img border border-success click-event" id="9">
+                    <img class="card-img" src="img/camnewton.jpeg" alt="Card image cap"/>
+                </section>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="card" id="card-eleven">
+                <section class="card-body hide-background-img border border-success click-event" id="10">
+                    <img class="card-img" src="img/camnewton.jpeg" alt="Card image cap"/>
+                </section>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="card" id="card-twelve">
+                <section class="card-body hide-background-img border border-success click-event" id="11">
+                    <img class="card-img" src="img/camnewton.jpeg" alt="Card image cap"/>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:replace="partials :: scripts" />
+<div th:replace="partials :: footer" />
+<script th:src="@{/js/jquery.js}"></script>
+<script th:src="@{/js/Memory_Card.js}"></script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Simple Simon</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous"/>
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/Simple_Simon.css}"/>
+</head>
+<body>
+<div class="container uk-margin-bottom">
+    <nav th:replace="partials :: navbar"/>
+</div>
+<div class="container">
+    <div class="row justify-content-center ">
+        <div class="col-4 ">
+            <h2 class="mb-5 ml-5">Lets Play Simon</h2>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-5 box" id="top-left"><img src="img/cam_newton_2.jpeg" alt="cam newton"/></div>
+        <div class="col-5 box" id="top-right"><img id="img-center" src="img/kawann_short.jpeg" alt="kawann-short"/></div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-5 box" id="bottom-left"><img  id="img-right" src="img/luke_Kuechly.jpeg" alt="luke-kuechly"/></div>
+        <div class="col-5 box" id="bottom-right"><img src="img/chrisitan-mccaffery.jpeg" alt="chrisitan_mccaffery"/></div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-3 justify-content-center mt-5 mb-5"><button id="playSimon">Play Simon</button></div>
+        <div class="col-3 justify-content-center mt-5 mb-5"><button id="restart">Reset Game</button></div>
+        <div class="col-1  mt-5 mb-5 box2"><p id="round-counter" class="mb-2">0</p></div>
+    </div>
+</div>
+<div th:replace="partials :: scripts" />
+<div th:replace="partials :: footer" />
+<script th:src="@{/js/jquery.js}"></script>
+<script th:src="@{/js/Simple_Simon.js}"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+</body>
+</html>
