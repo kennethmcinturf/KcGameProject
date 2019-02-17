@@ -1,22 +1,23 @@
 "use strict";
 //input variable for solution
-var solutionArray = [];
+let solutionArray = [];
 //input variable for user
-var userInputArray = [];
+let userInputArray = [];
 //Variable to keep count of score
-var myScore = document.getElementById("round-counter");
+let myScore = $("#round-counter");
 let topRight = $("#top-right > img");
 let topLeft = $("#top-left > img");
 let bottomLeft = $("#bottom-left > img");
 let bottomRight = $("#bottom-right> img");
+let highScore = $("#highScore");
 
 
     $("#playSimon").click(function () {
         $(this).attr("disabled", true);
         function randomMovement() {
-            var random = Math.floor((Math.random() * 4) + 1);
+            let random = Math.floor((Math.random() * 4) + 1);
             solutionArray.push(random);
-            myScore.innerHTML = solutionArray.length;
+            myScore.text(solutionArray.length);
             solutionArray.forEach(function (element,index) {
                 setTimeout(function(){
                     if (element === 1){
@@ -33,7 +34,7 @@ let bottomRight = $("#bottom-right> img");
         }
         randomMovement();
         function checkForWinner(input) {
-            var isWinner = true;
+            let isWinner = true;
             if (input.length === solutionArray.length){
                 input.forEach(function (element,index) {
                     if (element !== solutionArray[index]){
@@ -45,9 +46,12 @@ let bottomRight = $("#bottom-right> img");
                     userInputArray = [];
                     randomMovement();
                 }else {
+                    if (highScore.val() < parseFloat(myScore.text()) || highScore.val() === undefined){
+                        $("#HighScore").val(myScore.text());
+                        console.log($("#HighScore").val());
+                    }
                     alert('Sorry, but please try again');
                     $("#playSimon").off('click');
-
                 }
             }
         }

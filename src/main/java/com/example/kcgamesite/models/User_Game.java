@@ -15,6 +15,9 @@ public class User_Game {
     @JoinColumn (name = "game_id")
     private Game game;
 
+    @OneToOne
+    private User user;
+
     public long getId() {
         return id;
     }
@@ -37,5 +40,13 @@ public class User_Game {
 
     public void setGame(Game game) {
         this.game = game;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

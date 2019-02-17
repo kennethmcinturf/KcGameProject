@@ -260,7 +260,7 @@ $("#resetCards").click(function (e) {
     }else if(theAmountOfCards === "10"){
         $("#card-twelve").hide();
         $("#card-eleven").hide();
-        $("#card-ten").show()
+        $("#card-ten").show();
         $("#card-nine").show();
         $("#card-eight").show();
         $("#card-seven").show();
