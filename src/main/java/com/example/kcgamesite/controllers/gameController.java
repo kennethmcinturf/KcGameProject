@@ -7,14 +7,8 @@ import com.example.kcgamesite.models.User_Game;
 import com.example.kcgamesite.repositories.GameRepository;
 import com.example.kcgamesite.repositories.UserGameRepository;
 import com.example.kcgamesite.repositories.UserRepository;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-
-import java.util.List;
 
 @Controller
 public class gameController {
@@ -43,6 +37,15 @@ public class gameController {
             gameDao.save(gameY);
             gameDao.save(gameWin);
             gameDao.save(gameLoss);
+            User world = userDao.findByUsername("World");
+            User_Game worldGame1 = new User_Game(0, gameX, world);
+            usergameDao.save(worldGame1);
+            User_Game worldGame2 = new User_Game(0, gameY, world);
+            usergameDao.save(worldGame2);
+            User_Game worldGame3 = new User_Game(0, gameWin, world);
+            usergameDao.save(worldGame3);
+            User_Game worldGame4 = new User_Game(0, gameLoss, world);
+            usergameDao.save(worldGame4);
         }
         return "Game/Tic-Tac-Toe";
     }
@@ -65,6 +68,17 @@ public class gameController {
             gameDao.save(mem8);
             gameDao.save(mem10);
             gameDao.save(mem12);
+            User world = userDao.findByUsername("World");
+            User_Game worldGame1 = new User_Game(0, mem4, world);
+            usergameDao.save(worldGame1);
+            User_Game worldGame2 = new User_Game(0, mem6, world);
+            usergameDao.save(worldGame2);
+            User_Game worldGame3 = new User_Game(0, mem8, world);
+            usergameDao.save(worldGame3);
+            User_Game worldGame4 = new User_Game(0, mem10, world);
+            usergameDao.save(worldGame4);
+            User_Game worldGame5 = new User_Game(0, mem12, world);
+            usergameDao.save(worldGame5);
         }
         return "Game/Memory_Card";
     }
@@ -75,81 +89,10 @@ public class gameController {
             Game game = new Game();
             game.setTitle("Simple Simon");
             gameDao.save(game);
+            User world = userDao.findByUsername("World");
+            User_Game worldGame = new User_Game(0, game, world);
+            usergameDao.save(worldGame);
         }
         return "Game/Simple_Simon";
-    }
-
-    private String addScore(String highScore, String game, String URL){
-        if (!highScore.equals("") && SecurityContextHolder.getContext().getAuthentication().getPrincipal() != "anonymousUser"){
-            System.out.println("first hurdele");
-            int highScoreNumber = Integer.parseInt(highScore);
-            User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-            User thisUser = userDao.findOne(user.getId());
-            User_Game thisUserHighScore = usergameDao.findByUserAndGame(thisUser, gameDao.findByTitle(game));
-            if (thisUserHighScore == null){
-                User_Game user_game = new User_Game();
-                user_game.setHighScore(highScoreNumber);
-                user_game.setUser(thisUser);
-                user_game.setGame(gameDao.findByTitle(game));
-                usergameDao.save(user_game);
-                return URL;
-            }
-            if (highScoreNumber > thisUserHighScore.getHighScore()){
-                thisUserHighScore.setHighScore(highScoreNumber);
-                usergameDao.save(thisUserHighScore);
-                return URL;
-            }
-        }
-        return URL;
-    }
-
-    private void addTicTacToeScore(String game, String title){
-        if (!title.equals("") && SecurityContextHolder.getContext().getAuthentication().getPrincipal() != "anonymousUser"){
-            User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-            User thisUser = userDao.findOne(user.getId());
-            User_Game thisUserHighScore = usergameDao.findByUserAndGame(thisUser, gameDao.findByTitle(game));
-            if (thisUserHighScore == null){
-                User_Game user_game = new User_Game();
-                user_game.setHighScore(1);
-                user_game.setUser(thisUser);
-                user_game.setGame(gameDao.findByTitle(game));
-                usergameDao.save(user_game);
-            }else {
-                int score = thisUserHighScore.getHighScore();
-                score = score + 1;
-                thisUserHighScore.setHighScore(score);
-                usergameDao.save(thisUserHighScore);
-            }
-        }
-    }
-
-    @PostMapping("/MemoryCard")
-    public String saveMemoryCard(@RequestParam(name = "highScore4") String highScore4, @RequestParam(name = "highScore6") String highScore6,
-                                 @RequestParam(name = "highScore8") String highScore8, @RequestParam(name = "highScore10") String highScore10,
-                                 @RequestParam(name = "highScore12") String highScore12) {
-        System.out.println("hey");
-        addScore(highScore4, "Memory Card 4", "none");
-        addScore(highScore6, "Memory Card 6", "none");
-        addScore(highScore8, "Memory Card 8", "none");
-        addScore(highScore10, "Memory Card 10", "none");
-        addScore(highScore12, "Memory Card 12", "none");
-        return "Game/Memory_Card";
-    }
-
-    @PostMapping("/SimpleSimon")
-    public String saveSimpleSimon(@RequestParam(name = "highScore") String highScore) {
-        return addScore(highScore, "Simple Simon", "Game/Simple_Simon");
-    }
-
-    @PostMapping("/Tic-Tac-Toe")
-    public String saveTicTacToe(@RequestParam(name = "X") String highScoreX, @RequestParam(name = "Y") String highScoreY,
-                                @RequestParam(name = "SingleWin") String singleWin, @RequestParam(name = "SingleLoss") String singleLoss,
-                                @RequestParam(name = "Draw") String draw) {
-        addTicTacToeScore("Tic-Tac-Toe X's",highScoreX);
-        addTicTacToeScore("Tic-Tac-Toe Y's", highScoreY);
-        addTicTacToeScore("Tic-Tac-Toe Win", singleWin);
-        addTicTacToeScore("Tic-Tac-Toe Loss", singleLoss);
-        addTicTacToeScore("Draw", draw);
-        return "Game/Tic-Tac-Toe";
     }
 }

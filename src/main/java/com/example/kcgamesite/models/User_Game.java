@@ -18,6 +18,15 @@ public class User_Game {
     @OneToOne
     private User user;
 
+    public User_Game() {
+    }
+
+    public User_Game(int highScore, Game game, User user) {
+        this.highScore = highScore;
+        this.game = game;
+        this.user = user;
+    }
+
     public long getId() {
         return id;
     }
