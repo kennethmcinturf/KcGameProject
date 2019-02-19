@@ -21,7 +21,14 @@
         <div class="col-3 border border-dark text-center">
             <p class="text-center text-success">Score</p>
             <input type="text" class="text-center border border-dark " disabled="disabled" id="round-counter"/>
-            <button id="resetGame" class="mt-3 mb-3 btn btn-outline-success">Reset Game</button>
+            <form th:action="@{/MemoryCard}" method="POST">
+                <input type="hidden" name="highScore4" id="highScore4"/>
+                <input type="hidden" name="highScore6" id="highScore6"/>
+                <input type="hidden" name="highScore8" id="highScore8"/>
+                <input type="hidden" name="highScore10" id="highScore10"/>
+                <input type="hidden" name="highScore12" id="highScore12"/>
+                <button class="mt-3 mb-3 btn btn-outline-success" type="submit">Save Game</button>
+            </form>
         </div>
         <div class="col-6 text-center">
             <label for="highScore" class="text-success">How many cards Would you like to use?</label>
@@ -32,7 +39,7 @@
                 <option value="6">6</option>
                 <option value="4">4</option>
             </select>
-            <button id="resetCards" class="btn btn-outline-success mt-2">Reset Cards</button>
+            <button id="resetCards" class="btn btn-outline-success mt-2">Reset Game</button>
         </div>
         <div class="col-3 border border-dark text-center">
             <p id="highScoreName" class="text-success">Current High Score is: None</p>

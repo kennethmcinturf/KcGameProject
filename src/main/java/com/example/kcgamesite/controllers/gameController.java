@@ -44,13 +44,13 @@ public class gameController {
             Game mem4 = new Game();
             mem4.setTitle("Memory Card 4");
             Game mem6 = new Game();
-            mem4.setTitle("Memory Card 6");
+            mem6.setTitle("Memory Card 6");
             Game mem8 = new Game();
-            mem4.setTitle("Memory Card 8");
+            mem8.setTitle("Memory Card 8");
             Game mem10 = new Game();
-            mem4.setTitle("Memory Card 10");
+            mem10.setTitle("Memory Card 10");
             Game mem12 = new Game();
-            mem4.setTitle("Memory Card 12");
+            mem12.setTitle("Memory Card 12");
             gameDao.save(mem4);
             gameDao.save(mem6);
             gameDao.save(mem8);
@@ -70,31 +70,48 @@ public class gameController {
         return "Game/Simple_Simon";
     }
 
-    @PostMapping("/SimpleSimon")
-    public String saveSimpleSimon(@RequestParam(name = "highScore") String highScore) {
-        System.out.println(SecurityContextHolder.getContext().getAuthentication().getPrincipal());
-        System.out.println(highScore);
-        if (highScore != null && SecurityContextHolder.getContext().getAuthentication().getPrincipal() != "anonymousUser"){
+    private String addScore(String highScore, String game, String URL){
+        System.out.println("whats up");
+        if (!highScore.equals("") && SecurityContextHolder.getContext().getAuthentication().getPrincipal() != "anonymousUser"){
+            System.out.println("first hurdele");
             int highScoreNumber = Integer.parseInt(highScore);
             User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
             User thisUser = userDao.findOne(user.getId());
-            User_Game thisUserHighScore = usergameDao.findByUserAndGame(thisUser, gameDao.findByTitle("Simple Simon"));
+            User_Game thisUserHighScore = usergameDao.findByUserAndGame(thisUser, gameDao.findByTitle(game));
             if (thisUserHighScore == null){
                 System.out.println("got here");
                 User_Game user_game = new User_Game();
                 user_game.setHighScore(highScoreNumber);
                 user_game.setUser(thisUser);
-                user_game.setGame(gameDao.findByTitle("Simple Simon"));
+                user_game.setGame(gameDao.findByTitle(game));
                 usergameDao.save(user_game);
-                return "Game/Simple_Simon";
+                return URL;
             }
             if (highScoreNumber > thisUserHighScore.getHighScore()){
                 System.out.println("No, it got here");
                 thisUserHighScore.setHighScore(highScoreNumber);
                 usergameDao.save(thisUserHighScore);
-                return "Game/Simple_Simon";
+                return URL;
             }
         }
-        return "Game/Simple_Simon";
+        return URL;
+    }
+
+    @PostMapping("/MemoryCard")
+    public String saveMemoryCard(@RequestParam(name = "highScore4") String highScore4, @RequestParam(name = "highScore6") String highScore6,
+                                 @RequestParam(name = "highScore8") String highScore8, @RequestParam(name = "highScore10") String highScore10,
+                                 @RequestParam(name = "highScore12") String highScore12) {
+        System.out.println("hey");
+        addScore(highScore4, "Memory Card 4", "none");
+        addScore(highScore6, "Memory Card 6", "none");
+        addScore(highScore8, "Memory Card 8", "none");
+        addScore(highScore10, "Memory Card 10", "none");
+        addScore(highScore12, "Memory Card 12", "none");
+        return "Game/Memory_Card";
+    }
+
+    @PostMapping("/SimpleSimon")
+    public String saveSimpleSimon(@RequestParam(name = "highScore") String highScore) {
+        return addScore(highScore, "Simple Simon", "Game/Simple_Simon");
     }
 }

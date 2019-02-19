@@ -90,6 +90,7 @@ whichHighScore = (numberOfCards, score) => {
             localStorage.setItem("highscoretwelve", score);
             localStorage.setItem("highscoretwelveName", `Current High Score: ${highScore}`);
             $('#highScore').val(localStorage.highscoretwelve);
+            $('#highScore12').val(localStorage.highscoretwelve);
             $('#highScoreName').text(localStorage.highscoretwelveName);
         }
     }else if (numberOfCards === 10){
@@ -98,6 +99,7 @@ whichHighScore = (numberOfCards, score) => {
             localStorage.setItem("highscoreten", score);
             localStorage.setItem("highscoretenName", `Current High Score: ${highScore}`);
             $('#highScore').val(localStorage.highscoreten);
+            $('#highScore10').val(localStorage.highscoreten);
             $('#highScoreName').text(localStorage.highscoretenName);
         }
     }else if (numberOfCards === 8){
@@ -106,6 +108,7 @@ whichHighScore = (numberOfCards, score) => {
             localStorage.setItem("highscoreeight", score);
             localStorage.setItem("highscoreeightName", `Current High Score: ${highScore}`);
             $('#highScore').val(localStorage.highscoreeight);
+            $('#highScore8').val(localStorage.highscoreeight);
             $('#highScoreName').text(localStorage.highscoreeightName);
         }
     }else if (numberOfCards === 6){
@@ -114,6 +117,7 @@ whichHighScore = (numberOfCards, score) => {
             localStorage.setItem("highscoresix", score);
             localStorage.setItem("highscoresixName", `Current High Score: ${highScore}`);
             $('#highScore').val(localStorage.highscoresix);
+            $('#highScore6').val(localStorage.highscoresix);
             $('#highScoreName').text(localStorage.highscoresixName);
         }
     }else if (numberOfCards === 4){
@@ -123,6 +127,7 @@ whichHighScore = (numberOfCards, score) => {
             localStorage.setItem("highscorefourName", `Current High Score: ${highScore}`);
             $('#highScore').val(localStorage.highscorefour);
             $('#highScoreName').text(localStorage.highscorefourName);
+            $('#highScore4').val(score.toString());
         }
     }
 };
