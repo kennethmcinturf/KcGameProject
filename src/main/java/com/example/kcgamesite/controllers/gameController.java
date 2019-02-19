@@ -30,10 +30,19 @@ public class gameController {
 
     @GetMapping("/Tic-Tac-Toe")
     public String ticTacToe() {
-        if (gameDao.findByTitle("Tic-Tac-Toe") == null){
-            Game game = new Game();
-            game.setTitle("Tic-Tac-Toe");
-            gameDao.save(game);
+        if (gameDao.findByTitle("Tic-Tac-Toe X's") == null){
+            Game gameX = new Game();
+            gameX.setTitle("Tic-Tac-Toe X's");
+            Game gameY = new Game();
+            gameY.setTitle("Tic-Tac-Toe Y's");
+            Game gameWin = new Game();
+            gameWin.setTitle("Tic-Tac-Toe Win");
+            Game gameLoss = new Game();
+            gameLoss.setTitle("Tic-Tac-Toe Loss");
+            gameDao.save(gameX);
+            gameDao.save(gameY);
+            gameDao.save(gameWin);
+            gameDao.save(gameLoss);
         }
         return "Game/Tic-Tac-Toe";
     }
@@ -71,7 +80,6 @@ public class gameController {
     }
 
     private String addScore(String highScore, String game, String URL){
-        System.out.println("whats up");
         if (!highScore.equals("") && SecurityContextHolder.getContext().getAuthentication().getPrincipal() != "anonymousUser"){
             System.out.println("first hurdele");
             int highScoreNumber = Integer.parseInt(highScore);
@@ -79,7 +87,6 @@ public class gameController {
             User thisUser = userDao.findOne(user.getId());
             User_Game thisUserHighScore = usergameDao.findByUserAndGame(thisUser, gameDao.findByTitle(game));
             if (thisUserHighScore == null){
-                System.out.println("got here");
                 User_Game user_game = new User_Game();
                 user_game.setHighScore(highScoreNumber);
                 user_game.setUser(thisUser);
@@ -88,13 +95,32 @@ public class gameController {
                 return URL;
             }
             if (highScoreNumber > thisUserHighScore.getHighScore()){
-                System.out.println("No, it got here");
                 thisUserHighScore.setHighScore(highScoreNumber);
                 usergameDao.save(thisUserHighScore);
                 return URL;
             }
         }
         return URL;
+    }
+
+    private void addTicTacToeScore(String game, String title){
+        if (!title.equals("") && SecurityContextHolder.getContext().getAuthentication().getPrincipal() != "anonymousUser"){
+            User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            User thisUser = userDao.findOne(user.getId());
+            User_Game thisUserHighScore = usergameDao.findByUserAndGame(thisUser, gameDao.findByTitle(game));
+            if (thisUserHighScore == null){
+                User_Game user_game = new User_Game();
+                user_game.setHighScore(1);
+                user_game.setUser(thisUser);
+                user_game.setGame(gameDao.findByTitle(game));
+                usergameDao.save(user_game);
+            }else {
+                int score = thisUserHighScore.getHighScore();
+                score = score + 1;
+                thisUserHighScore.setHighScore(score);
+                usergameDao.save(thisUserHighScore);
+            }
+        }
     }
 
     @PostMapping("/MemoryCard")
@@ -113,5 +139,17 @@ public class gameController {
     @PostMapping("/SimpleSimon")
     public String saveSimpleSimon(@RequestParam(name = "highScore") String highScore) {
         return addScore(highScore, "Simple Simon", "Game/Simple_Simon");
+    }
+
+    @PostMapping("/Tic-Tac-Toe")
+    public String saveTicTacToe(@RequestParam(name = "X") String highScoreX, @RequestParam(name = "Y") String highScoreY,
+                                @RequestParam(name = "SingleWin") String singleWin, @RequestParam(name = "SingleLoss") String singleLoss,
+                                @RequestParam(name = "Draw") String draw) {
+        addTicTacToeScore("Tic-Tac-Toe X's",highScoreX);
+        addTicTacToeScore("Tic-Tac-Toe Y's", highScoreY);
+        addTicTacToeScore("Tic-Tac-Toe Win", singleWin);
+        addTicTacToeScore("Tic-Tac-Toe Loss", singleLoss);
+        addTicTacToeScore("Draw", draw);
+        return "Game/Tic-Tac-Toe";
     }
 }

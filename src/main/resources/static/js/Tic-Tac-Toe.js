@@ -31,13 +31,29 @@ let lowerLeftClick = false;
 let lowerCenterClick = false;
 let lowerRightClick = false;
 
+let Xs = $('#X');
+let Ys = $('#Y');
+let SingleWin = $('#SingleWin');
+let SingleLoss = $('#SingleLoss');
+let Draw = $('#Draw');
 
+let xValue = 0;
+let yValue = 0;
+let winValue = 0;
+let lossValue = 0;
 
-var clickCounter = 0;
-var continueGame = true;
+let singlePlayer = false;
+
+let clickCounter = 0;
+let continueGame = true;
 
 
 $(document).ready(function () {
+    function saveGame(winner, winnerValue) {
+        winnerValue = winnerValue + 1;
+        winner.val(winnerValue);
+    }
+
     function gameOver (){
         if (gameOver = true){
             $('#playerX').css("display",'none');
@@ -135,6 +151,11 @@ $(document).ready(function () {
         var Y = "Player O is the winner!";
         if ((upperLeft === upperCenter) && (upperCenter === upperRight)){
             if (upperLeft === 1){
+                if (singlePlayer){
+                    saveGame(SingleWin, winValue)
+                }else {
+                    saveGame(Xs, xValue);
+                }
                 alert(X);
                 clickCounter = "A";
                 $('#playerXWinner').css("display",'initial');
@@ -142,6 +163,11 @@ $(document).ready(function () {
                 $('#playerO').hide();
                 continueGame = false;
             } else if (upperLeft === 2){
+                if (singlePlayer){
+                    saveGame(SingleLoss, lossValue)
+                }else {
+                    saveGame(Ys, yValue);
+                }
                 clickCounter = "A";
                 alert(Y);
                 $('#playerOWinner').css("display",'initial');
@@ -151,6 +177,11 @@ $(document).ready(function () {
             }
         }else if ((upperLeft === centerLeft) && (centerLeft === lowerLeft)){
             if (upperLeft === 1){
+                if (singlePlayer){
+                    saveGame(SingleWin, winValue)
+                }else {
+                    saveGame(Xs, xValue);
+                }
                 clickCounter = "A";
                 alert(X);
                 $('#playerXWinner').css("display",'initial');
@@ -158,6 +189,11 @@ $(document).ready(function () {
                 $('#playerO').hide();
                 continueGame = false;
             } else {
+                if (singlePlayer){
+                    saveGame(SingleLoss, lossValue)
+                }else {
+                    saveGame(Ys, yValue);
+                }
                 clickCounter = "A";
                 alert(Y);
                 $('#playerOWinner').css("display",'initial');
@@ -167,6 +203,11 @@ $(document).ready(function () {
             }
         }else if ((upperCenter === centerCenter) && (centerCenter === lowerCenter)){
             if (upperCenter === 1){
+                if (singlePlayer){
+                    saveGame(SingleWin, winValue)
+                }else {
+                    saveGame(Xs, xValue);
+                }
                 clickCounter = "A";
                 alert(X);
                 $('#playerXWinner').css("display",'initial');
@@ -174,6 +215,11 @@ $(document).ready(function () {
                 $('#playerO').hide();
                 continueGame = false;
             } else {
+                if (singlePlayer){
+                    saveGame(SingleLoss, lossValue)
+                }else {
+                    saveGame(Ys, yValue);
+                }
                 clickCounter = "A";
                 alert(Y);
                 $('#playerOWinner').css("display",'initial');
@@ -183,6 +229,11 @@ $(document).ready(function () {
             }
         }else if ((upperRight === centerRight) && (centerRight === lowerRight)){
             if (upperRight === 1){
+                if (singlePlayer){
+                    saveGame(SingleWin, winValue)
+                }else {
+                    saveGame(Xs, xValue);
+                }
                 clickCounter = "A";
                 alert(X);
                 $('#playerXWinner').css("display",'initial');
@@ -190,6 +241,11 @@ $(document).ready(function () {
                 $('#playerO').hide();
                 continueGame = false;
             } else {
+                if (singlePlayer){
+                    saveGame(SingleLoss, lossValue)
+                }else {
+                    saveGame(Ys, yValue);
+                }
                 clickCounter = "A";
                 alert(Y);
                 $('#playerOWinner').css("display",'initial');
@@ -199,6 +255,11 @@ $(document).ready(function () {
             }
         }else if ((upperCenter === centerCenter) && (centerCenter === lowerCenter)){
             if (upperCenter === 1){
+                if (singlePlayer){
+                    saveGame(SingleWin, winValue)
+                }else {
+                    saveGame(Xs, xValue);
+                }
                 clickCounter = "A";
                 alert(X);
                 $('#playerXWinner').css("display",'initial');
@@ -206,6 +267,11 @@ $(document).ready(function () {
                 $('#playerO').hide();
                 continueGame = false;
             } else {
+                if (singlePlayer){
+                    saveGame(SingleLoss, lossValue);
+                }else {
+                    saveGame(Ys, yValue);
+                }
                 clickCounter = "A";
                 alert(Y);
                 $('#playerOWinner').css("display",'initial');
@@ -215,6 +281,11 @@ $(document).ready(function () {
             }
         }else if ((centerLeft === centerCenter) && (centerCenter === centerRight)){
             if (centerLeft === 1){
+                if (singlePlayer){
+                    saveGame(SingleWin, winValue)
+                }else {
+                    saveGame(Xs, xValue);
+                }
                 clickCounter = "A";
                 alert(X);
                 $('#playerXWinner').css("display",'initial');
@@ -222,6 +293,11 @@ $(document).ready(function () {
                 $('#playerO').hide();
                 continueGame = false;
             } else {
+                if (singlePlayer){
+                    saveGame(SingleLoss, lossValue)
+                }else {
+                    saveGame(Ys, yValue);
+                }
                 clickCounter = "A";
                 alert(Y);
                 $('#playerOWinner').css("display",'initial');
@@ -231,6 +307,11 @@ $(document).ready(function () {
             }
         }else if ((lowerLeft === lowerCenter) && (lowerCenter === lowerRight)){
             if (lowerLeft === 1){
+                if (singlePlayer){
+                    saveGame(SingleWin, winValue)
+                }else {
+                    saveGame(Xs, xValue);
+                }
                 clickCounter = "A";
                 alert(X);
                 $('#playerXWinner').css("display",'initial');
@@ -238,6 +319,11 @@ $(document).ready(function () {
                 $('#playerO').hide();
                 continueGame = false;
             } else {
+                if (singlePlayer){
+                    saveGame(SingleLoss, lossValue)
+                }else {
+                    saveGame(Ys, yValue);
+                }
                 clickCounter = "A";
                 alert(Y);
                 $('#playerOWinner').css("display",'initial');
@@ -247,6 +333,11 @@ $(document).ready(function () {
             }
         }else if ((upperLeft === centerCenter) && (centerCenter === lowerRight)){
             if (upperLeft === 1){
+                if (singlePlayer){
+                    saveGame(SingleWin, winValue)
+                }else {
+                    saveGame(Xs, xValue);
+                }
                 clickCounter = "A";
                 alert(X);
                 $('#playerXWinner').css("display",'initial');
@@ -254,6 +345,11 @@ $(document).ready(function () {
                 $('#playerO').hide();
                 continueGame = false;
             } else {
+                if (singlePlayer){
+                    saveGame(SingleLoss, lossValue)
+                }else {
+                    saveGame(Ys, yValue);
+                }
                 clickCounter = "A";
                 alert(Y);
                 $('#playerOWinner').css("display",'initial');
@@ -263,6 +359,11 @@ $(document).ready(function () {
             }
         }else if ((upperRight === centerCenter) && (centerCenter === lowerLeft)){
             if (upperRight === 1){
+                if (singlePlayer){
+                    saveGame(SingleWin, winValue)
+                }else {
+                    saveGame(Xs, xValue);
+                }
                 clickCounter = "A";
                 alert(X);
                 $('#playerXWinner').css("display",'initial');
@@ -270,6 +371,11 @@ $(document).ready(function () {
                 $('#playerO').hide();
                 continueGame = false;
             } else {
+                if (singlePlayer){
+                    saveGame(SingleLoss, lossValue)
+                }else {
+                    saveGame(Ys, yValue);
+                }
                 clickCounter = "A";
                 alert(Y);
                 $('#playerOWinner').css("display",'initial');
@@ -281,6 +387,7 @@ $(document).ready(function () {
     }
     function restartGame (){
         if (clickCounter === 9) {
+            saveGame(Draw, lossValue);
             alert("No One Wins!!");
             alert("Game is Restarting...");
             location.reload();
@@ -344,6 +451,7 @@ $(document).ready(function () {
 
     $('#onePlayer').click(function (e) {
         e.stopPropagation();
+        singlePlayer = true;
         $('.box').one('click', function (e) {
             e.stopPropagation();
             if (clickCounter === 9){
@@ -356,7 +464,7 @@ $(document).ready(function () {
                         console.log(clickCounter);
                     }while (clickCounter % 2 === 1);
                 }
-            }, 1);
+            }, 500);
         })
     })
 });

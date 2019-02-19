@@ -37,11 +37,18 @@
         <div class="col-6 pt-5" id="playerOWinner"><p>Player O is the Winner!</p></div>
     </div>
     <div class="row">
-        <div class="col-6">
-            <button class="restartButton">Restart Game</button>
+        <div class="col-4">
+            <button id="onePlayer">Single Player Mode</button>
         </div>
         <div class="col-6">
-            <button id="onePlayer">Single Player Mode</button>
+            <form th:action="@{/Tic-Tac-Toe}" method="POST">
+                <input type="hidden" id="X" name="X"/>
+                <input type="hidden" id="Y" name="Y"/>
+                <input type="hidden" id="SingleWin" name="SingleWin"/>
+                <input type="hidden" id="SingleLoss" name="SingleLoss"/>
+                <input type="hidden" id="Draw" name="Draw"/>
+                <button type="submit">Save and Restart Game</button>
+            </form>
         </div>
     </div>
 </div>
