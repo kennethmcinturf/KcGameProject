@@ -18,6 +18,9 @@ public class User_Game {
     @OneToOne
     private User user;
 
+    @OneToOne
+    private User highScorePerson;
+
     public User_Game() {
     }
 
@@ -57,5 +60,13 @@ public class User_Game {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public User getHighScorePerson() {
+        return highScorePerson;
+    }
+
+    public void setHighScorePerson(User highScorePerson) {
+        this.highScorePerson = highScorePerson;
     }
 }

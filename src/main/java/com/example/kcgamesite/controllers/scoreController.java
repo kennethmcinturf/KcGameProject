@@ -36,32 +36,31 @@ public class scoreController {
                 user_game.setUser(thisUser);
                 user_game.setGame(gameDao.findByTitle(game));
                 usergameDao.save(user_game);
-                return URL;
             }
-            if (highScoreNumber > thisUserHighScore.getHighScore()){
+            if (thisUserHighScore != null && highScoreNumber > thisUserHighScore.getHighScore()){
                 if(game.equals("Simple Simon")){
                     thisUserHighScore.setHighScore(highScoreNumber);
                     usergameDao.save(thisUserHighScore);
-                    return URL;
-                }else {
-                    if (highScoreNumber < thisUserHighScore.getHighScore()){
+                }
+            }
+            if (thisUserHighScore != null && highScoreNumber < thisUserHighScore.getHighScore()){
+                if(!game.equals("Simple Simon")){
                         thisUserHighScore.setHighScore(highScoreNumber);
                         usergameDao.save(thisUserHighScore);
-                        return URL;
-                    }
                 }
             }
             User_Game worldRecord = usergameDao.findByUserAndGame(world, gameDao.findByTitle(game));
+            System.out.println(worldRecord.getHighScore());
             if (game.equals("Simple Simon")){
-                if (worldRecord.getHighScore() < highScoreNumber){
+                if (worldRecord.getHighScore() < highScoreNumber || worldRecord.getHighScore() == 0){
+                    worldRecord.setHighScorePerson(thisUser);
                     worldRecord.setHighScore(highScoreNumber);
-                    worldRecord.setUser(thisUser);
                     usergameDao.save(worldRecord);
                 }
             }else {
-                if (worldRecord.getHighScore() > highScoreNumber){
+                if (worldRecord.getHighScore() > highScoreNumber || worldRecord.getHighScore() == 0){
+                    worldRecord.setHighScorePerson(thisUser);
                     worldRecord.setHighScore(highScoreNumber);
-                    worldRecord.setUser(thisUser);
                     usergameDao.save(worldRecord);
                 }
             }
